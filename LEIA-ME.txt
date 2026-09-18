@@ -1,0 +1,46 @@
+FAMAIS MÓVEIS ARTESANAIS — SITE ESTÁTICO
+
+COMO ABRIR NO COMPUTADOR
+1. Extraia o arquivo ZIP.
+2. Abra a pasta Famais-Moveis-Artesanais.
+3. Dê dois cliques em index.html.
+
+Não é necessário instalar Node.js, npm, Docker ou banco de dados.
+
+COMO PUBLICAR NO GITHUB
+1. Abra o repositório Famais-Moveis-Artesanais.
+2. Envie todos os arquivos desta pasta para a raiz do repositório.
+3. Confirme as alterações em Commit changes.
+4. Aguarde a atualização do GitHub Pages.
+5. Abra o site e atualize com Ctrl + F5.
+
+ENDEREÇO ATUAL
+https://pablohbatista65-max.github.io/Famais-Moveis-Artesanais/
+
+ARQUIVOS PRINCIPAIS
+- index.html: estrutura e conteúdo do site.
+- styles.css: aparência e responsividade.
+- data.js: lista dos produtos.
+- app.js: catálogo, pesquisa, filtros, sacola, modal e WhatsApp.
+- logo-famais.svg: logotipo.
+- produto-01.jpg até produto-20.jpg: imagens do catálogo.
+- robots.txt e sitemap.xml: configuração para mecanismos de busca.
+
+COMO EDITAR PRODUTOS
+Abra data.js. Cada produto possui:
+- id: número único.
+- name: nome.
+- category: categoria.
+- image: nome da imagem.
+- price: preço ou null para mostrar “Preço sob consulta”.
+- stock: quantidade disponível.
+- featured: use 1 para destaque ou 0 para normal.
+- description: descrição do produto.
+
+IMPORTANTE
+Esta versão não possui painel administrativo, login, servidor ou banco de dados.
+As informações do formulário não são armazenadas: elas são enviadas diretamente
+para o WhatsApp quando o visitante confirma o atendimento.
+
+Se futuramente for usado um domínio próprio, atualize no index.html, robots.txt e
+sitemap.xml os endereços que atualmente apontam para o GitHub Pages.

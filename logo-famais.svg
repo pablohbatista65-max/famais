@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-labelledby="title desc">
+  <title id="title">Famais Móveis Artesanais</title>
+  <desc id="desc">Símbolo de uma poltrona sobre o nome Famais</desc>
+  <g fill="none" stroke="#253b2c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M250 82c6-39 27-60 70-60s64 21 70 60"/>
+    <path d="M250 82c-21-8-39 4-39 25v19c0 18 14 32 32 32h154c18 0 32-14 32-32v-19c0-21-18-33-39-25"/>
+    <path d="M255 78v50h130V78M238 158l-9 27M402 158l9 27"/>
+  </g>
+  <text x="320" y="205" fill="#253b2c" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-style="italic" font-weight="700" text-anchor="middle" letter-spacing="4">FAMAIS</text>
+  <text x="320" y="218" fill="#526a59" font-family="Arial, sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="6">MÓVEIS ARTESANAIS</text>
+</svg>
