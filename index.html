@@ -8,9 +8,9 @@
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Famais Móveis Artesanais">
     <meta property="og:description" content="Móveis artesanais para áreas internas, externas e gourmet.">
-    <meta property="og:url" content="https://pablohbatista65-max.github.io/Famais-Moveis-Artesanais/">
+    <meta property="og:url" content="https://pablohbatista65-max.github.io/famais/">
     <meta property="og:site_name" content="Famais Móveis Artesanais">
-    <meta property="og:image" content="https://pablohbatista65-max.github.io/Famais-Moveis-Artesanais/produto-19.jpg">
+    <meta property="og:image" content="https://pablohbatista65-max.github.io/famais/produto-19.jpg">
     <meta property="og:image:width" content="1448">
     <meta property="og:image:height" content="1086">
     <meta property="og:image:alt" content="Conjunto de móveis artesanais Famais em uma área externa">
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#000000">
     <title>Famais Móveis Artesanais | Móveis para área interna e externa</title>
-    <link rel="canonical" href="https://pablohbatista65-max.github.io/Famais-Moveis-Artesanais/">
+    <link rel="canonical" href="https://pablohbatista65-max.github.io/famais/">
     <link rel="icon" href="logo-famais.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +29,8 @@
     "@context": "https://schema.org",
     "@type": "FurnitureStore",
     "name": "Famais Móveis Artesanais",
-    "url": "https://pablohbatista65-max.github.io/Famais-Moveis-Artesanais/",
-    "image": "https://pablohbatista65-max.github.io/Famais-Moveis-Artesanais/logo-famais.svg",
+    "url": "https://pablohbatista65-max.github.io/famais/",
+    "image": "https://pablohbatista65-max.github.io/famais/logo-famais.svg",
     "telephone": "+55 44 99125-5235",
     "address": {
         "@type": "PostalAddress",
@@ -178,7 +178,6 @@
                         <select id="sortProducts" aria-label="Ordenar produtos">
                             <option value="featured">Destaques</option>
                             <option value="name">Nome A-Z</option>
-                            <option value="stock">Maior estoque</option>
                         </select>
                     </div>
                 </div>
@@ -397,10 +396,10 @@
 
                 <form class="contact-form" id="contactForm">
                     <label>Nome<input id="contactName" name="name" autocomplete="name" required></label>
-                    <label>E-mail<input id="contactEmail" name="email" type="email" autocomplete="email" required></label>
-                    <label>Telefone<input id="contactPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
+                    <label>Cidade e estado (opcional)<input id="contactCity" name="city" autocomplete="address-level2" placeholder="Ex.: Tapira — PR" maxlength="120"></label>
                     <label>Mensagem<textarea id="contactMessage" name="message" rows="5" placeholder="Quero saber mais sobre..."></textarea></label>
-                    <button class="btn btn-dark" type="submit">Enviar pelo WhatsApp</button>
+                    <button class="btn btn-dark" type="submit">Continuar no WhatsApp</button>
+                    <p class="form-help">A mensagem será preparada no WhatsApp. Você poderá revisar antes de enviar. Não é necessário informar e-mail ou telefone aqui.</p>
                 </form>
             </div>
         </section>
@@ -472,7 +471,8 @@
                 <p id="modalDescription"></p>
                 <div class="modal-stock" id="modalStock"></div>
                 <div class="modal-price" id="modalPrice">Preço sob consulta</div>
-                <button class="btn btn-dark" id="modalAdd" type="button">Adicionar à seleção</button>
+                <a class="btn btn-dark" id="modalQuote" target="_blank" rel="noopener noreferrer">Pedir orçamento no WhatsApp</a>
+                <button class="btn btn-soft" id="modalAdd" type="button">Adicionar à seleção</button>
             </div>
         </div>
     </div>

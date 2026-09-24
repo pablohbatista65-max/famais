@@ -6,7 +6,7 @@ pelo WhatsApp.
 
 ## Site publicado
 
-https://pablohbatista65-max.github.io/Famais-Moveis-Artesanais/
+https://pablohbatista65-max.github.io/famais/
 
 ## Tecnologias
 

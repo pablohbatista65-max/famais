@@ -207,8 +207,6 @@ function getVisibleProducts() {
 
     if (sort === "name") {
         filtered.sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
-    } else if (sort === "stock") {
-        filtered.sort((a, b) => b.stock - a.stock);
     } else {
         filtered.sort((a, b) => Number(b.featured) - Number(a.featured));
     }
@@ -256,12 +254,13 @@ function renderProducts() {
                 <div class="product-body">
                     <div class="product-topline">
                         <span>${product.category}</span>
-                        <span>${product.stock} em estoque</span>
+                        <span>Disponibilidade sob consulta</span>
                     </div>
 
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
 
+                    <a class="btn btn-dark product-quote" href="${productQuoteUrl(product)}" target="_blank" rel="noopener noreferrer">Pedir orçamento</a>
                     <div class="product-bottom">
                         <span class="price">${productPrice(product)}</span>
 
@@ -312,12 +311,13 @@ function openProduct(id) {
     if (!product) return;
 
     selectedProductId = id;
+    $("#modalQuote").href = productQuoteUrl(product);
     $("#modalImage").src = product.image;
     $("#modalImage").alt = product.name;
     $("#modalCategory").textContent = product.category;
     $("#modalName").textContent = product.name;
     $("#modalDescription").textContent = product.description;
-    $("#modalStock").textContent = `${product.stock} unidade(s) disponíveis para consulta`;
+    $("#modalStock").textContent = "Consulte disponibilidade e prazo de entrega";
     $("#modalPrice").textContent = productPrice(product);
 
     lastFocusedElement = document.activeElement;
@@ -412,6 +412,16 @@ function closeCart() {
     if (wasOpen && lastFocusedElement && typeof lastFocusedElement.focus === "function") {
         lastFocusedElement.focus();
     }
+}
+
+function productQuoteUrl(product) {
+    const message = [
+        "Olá! Gostaria de um orçamento Famais.",
+        `Produto: ${product.name}`,
+        `Referência: ${product.id}`,
+        "Pode informar valor, acabamentos, medidas e prazo de entrega?"
+    ].join("\n");
+    return `https://wa.me/5544991255235?text=${encodeURIComponent(message)}`;
 }
 
 function requestQuote() {
@@ -541,8 +551,7 @@ $("#contactForm").addEventListener("submit", (event) => {
         "Olá! Gostaria de atendimento sobre os móveis Famais.",
         "",
         `Nome: ${$("#contactName").value}`,
-        `E-mail: ${$("#contactEmail").value}`,
-        `Telefone: ${$("#contactPhone").value}`,
+        `Cidade/UF: ${$("#contactCity").value.trim() || "Não informada"}`,
         `Mensagem: ${$("#contactMessage").value || "Gostaria de mais informações."}`
     ].join("\n");
 

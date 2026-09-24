@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pablohbatista65-max.github.io/Famais-Moveis-Artesanais/sitemap.xml
+Sitemap: https://pablohbatista65-max.github.io/famais/sitemap.xml
