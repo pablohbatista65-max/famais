@@ -198,6 +198,7 @@ function getVisibleProducts() {
             product.name,
             product.category,
             product.description,
+            product.reference || "",
         ].join(" ").toLowerCase().includes(query);
 
         return categoryOk && searchOk;
@@ -418,8 +419,9 @@ function productQuoteUrl(product) {
     const message = [
         "Olá! Gostaria de um orçamento Famais.",
         `Produto: ${product.name}`,
-        `Referência: ${product.id}`,
-        "Pode informar valor, acabamentos, medidas e prazo de entrega?"
+        `Referência: ${product.reference || product.id}`,
+        "Pode informar valor, acabamentos, medidas e prazo de entrega?",
+        "Minha cidade e a quantidade desejada são: "
     ].join("\n");
     return `https://wa.me/5544991255235?text=${encodeURIComponent(message)}`;
 }
@@ -435,7 +437,7 @@ function requestQuote() {
     }
 
     const lines = selected.map((product, index) =>
-        `${index + 1}. ${product.name} - ${product.category}`
+        `${index + 1}. ${product.name} (ref. ${product.reference || product.id}) - ${product.category}`
     );
 
     const message = [
@@ -443,7 +445,8 @@ function requestQuote() {
         "",
         ...lines,
         "",
-        "Pode me informar valores, acabamentos e prazo de entrega?"
+        "Pode me informar valores, acabamentos e prazo de entrega?",
+        "Minha cidade e a quantidade desejada são: "
     ].join("\n");
 
     window.open(

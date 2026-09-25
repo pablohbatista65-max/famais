@@ -64,6 +64,7 @@
             </nav>
 
             <div class="header-actions">
+                <a class="header-quote" href="#contato">Pedir orçamento</a>
                 <button
                     class="icon-action"
                     id="searchToggle"
@@ -92,6 +93,7 @@
             <a href="#categorias">Categorias</a>
             <a href="#sobre">Sobre</a>
             <a href="#essencia">Nossa essência</a>
+            <a class="mobile-quote" href="#contato">Pedir orçamento</a>
             <a href="#contato">Contato</a>
         </nav>
 
@@ -127,8 +129,8 @@
                     <h1>Ambientes que convidam você a ficar.</h1>
                     <p>Design, conforto e acabamento artesanal para transformar áreas externas, gourmet e espaços de convivência.</p>
                     <div class="hero-actions">
-                        <a href="#colecao" class="btn btn-light">Ver coleção</a>
-                        <a href="https://wa.me/5544991255235" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">Falar no WhatsApp</a>
+                        <a href="#colecao" class="btn btn-light">Escolher um produto</a>
+                        <a href="#contato" class="btn btn-outline-light">Pedir orçamento</a>
                     </div>
                 </div>
                 <div class="hero-brandmark">
@@ -381,6 +383,11 @@
                     <span class="eyebrow">ATENDIMENTO</span>
                     <h2>Vamos montar o seu ambiente?</h2>
                     <p>Envie sua cidade, os produtos que gostou e uma estimativa de quantidade. A equipe comercial pode orientar sobre disponibilidade, acabamento e entrega.</p>
+                    <ol class="quote-steps" aria-label="Como pedir um orçamento">
+                        <li><strong>Escolha um modelo</strong><span>Veja a coleção e anote o nome do produto.</span></li>
+                        <li><strong>Conte o que precisa</strong><span>Informe cidade, quantidade e suas dúvidas.</span></li>
+                        <li><strong>Revise a mensagem</strong><span>O WhatsApp abre com o pedido pronto para você enviar.</span></li>
+                    </ol>
 
                     <div class="contact-list">
                         <a href="https://wa.me/5544991255235" target="_blank" rel="noopener noreferrer">
@@ -397,7 +404,7 @@
                 <form class="contact-form" id="contactForm">
                     <label>Nome<input id="contactName" name="name" autocomplete="name" required></label>
                     <label>Cidade e estado (opcional)<input id="contactCity" name="city" autocomplete="address-level2" placeholder="Ex.: Tapira — PR" maxlength="120"></label>
-                    <label>Mensagem<textarea id="contactMessage" name="message" rows="5" placeholder="Quero saber mais sobre..."></textarea></label>
+                    <label>Produto e quantidade (opcional)<textarea id="contactMessage" name="message" rows="4" placeholder="Ex.: Conjunto Lounge Azul, 1 unidade. Quero saber acabamentos e prazo."></textarea></label>
                     <button class="btn btn-dark" type="submit">Continuar no WhatsApp</button>
                     <p class="form-help">A mensagem será preparada no WhatsApp. Você poderá revisar antes de enviar. Não é necessário informar e-mail ou telefone aqui.</p>
                 </form>
@@ -493,7 +500,7 @@
     pelo WhatsApp. Este site não armazena as informações preenchidas.
 </small>
 
-    <script src="data.js"></script>
+    <script src="catalogo-2026.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
