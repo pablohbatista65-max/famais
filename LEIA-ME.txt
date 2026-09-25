@@ -20,22 +20,25 @@ https://pablohbatista65-max.github.io/famais/
 ARQUIVOS PRINCIPAIS
 - index.html: estrutura e conteúdo do site.
 - styles.css: aparência e responsividade.
-- data.js: lista dos produtos.
-- app.js: catálogo, pesquisa, filtros, sacola, modal e WhatsApp.
+- catalogo-2026.js: lista atual de 53 produtos.
+- data.js: arquivo da lista antiga, não carregado pela página.
+- app.js: catálogo, pesquisa, filtros, carrinho, modal e WhatsApp.
 - logo-famais.svg: logotipo.
-- produto-01.jpg até produto-20.jpg: imagens do catálogo.
+- catalogo-2026-pXX-rX.jpg: fotos dos produtos do catálogo 2026.
+- capa-*.jpg: fotos da capa animada.
+- produto-01.jpg até produto-20.jpg: fotos usadas em outras seções.
 - robots.txt e sitemap.xml: configuração para mecanismos de busca.
 
 COMO EDITAR PRODUTOS
-Abra data.js. Cada produto possui:
-- id: número único.
-- name: nome.
-- category: categoria.
-- image: nome da imagem.
-- price: preço ou null para mostrar “Preço sob consulta”.
-- stock: campo legado dos dados; a disponibilidade é confirmada no atendimento.
-- featured: use 1 para destaque ou 0 para normal.
-- description: descrição do produto.
+Abra catalogo-2026.js. Cada linha da lista CATALOG_2026 informa:
+- página e posição da foto no PDF;
+- nome do modelo;
+- categoria;
+- material descrito no catálogo.
+
+O código monta automaticamente a referência e o caminho da foto. Os preços
+e o estoque não constam do PDF: são tratados como informação sob consulta.
+Ao incluir um produto, envie também uma foto com o nome correspondente.
 
 IMPORTANTE
 Esta versão não possui painel administrativo, login, servidor ou banco de dados.

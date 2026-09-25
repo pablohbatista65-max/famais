@@ -43,7 +43,7 @@
 </head>
 <body>
     <div class="announcement">
-        <span>Entrega para todo o Brasil</span>
+        <span>Consulte entrega para sua região</span>
         <span class="announcement-dot"></span>
         <span>Atendimento direto da fábrica</span>
         <span class="announcement-dot"></span>
@@ -73,8 +73,8 @@
                     aria-controls="searchPanel"
                     aria-expanded="false"
                 >⌕</button>
-                <button class="icon-action cart-button" id="cartButton" type="button" aria-label="Abrir sacola">
-                    Sacola
+                <button class="icon-action cart-button" id="cartButton" type="button" aria-label="Abrir carrinho">
+                    Carrinho
                     <span id="cartCount">0</span>
                 </button>
                 <button
@@ -112,24 +112,27 @@
 
     <main>
         <section class="hero">
-            <div class="hero-media">
+            <div class="hero-media" aria-hidden="true">
                 <img
-                    src="produto-19.jpg"
-                    alt="Conjunto de móveis Famais em área externa"
-                    width="1448"
-                    height="1086"
+                    class="hero-slide"
+                    src="capa-navegantes.jpg"
+                    alt=""
+                    width="1500"
+                    height="1080"
                     decoding="async"
                     fetchpriority="high"
                 >
+                <img class="hero-slide" src="capa-santiago.jpg" alt="" width="1500" height="1080" decoding="async">
+                <img class="hero-slide" src="capa-ilha-do-mel.jpg" alt="" width="1500" height="1080" decoding="async">
                 <div class="hero-overlay"></div>
             </div>
             <div class="container hero-content">
                 <div class="hero-copy">
                     <span class="eyebrow">MÓVEIS ARTESANAIS FAMAIS</span>
-                    <h1>Ambientes que convidam você a ficar.</h1>
-                    <p>Design, conforto e acabamento artesanal para transformar áreas externas, gourmet e espaços de convivência.</p>
+                    <h1>Encontre o móvel certo para viver cada espaço.</h1>
+                    <p>Conheça os modelos do catálogo Famais 2026, escolha seus favoritos e peça um orçamento direto pelo WhatsApp.</p>
                     <div class="hero-actions">
-                        <a href="#colecao" class="btn btn-light">Escolher um produto</a>
+                        <a href="#colecao" class="btn btn-light">Explorar o catálogo</a>
                         <a href="#contato" class="btn btn-outline-light">Pedir orçamento</a>
                     </div>
                 </div>
@@ -141,10 +144,10 @@
 
         <section class="benefits">
             <div class="container benefits-grid">
-                <article><strong>Direto da fábrica</strong><span>Atendimento comercial especializado.</span></article>
-                <article><strong>Acabamento artesanal</strong><span>Detalhes pensados para cada ambiente.</span></article>
-                <article><strong>Áreas internas e externas</strong><span>Soluções para varanda, gourmet e jardim.</span></article>
-                <article><strong>Atendimento nacional</strong><span>Consulte disponibilidade para sua região.</span></article>
+                <article><strong>Direto da fábrica</strong><span>Converse com a equipe sobre os modelos.</span></article>
+                <article><strong>Acabamento artesanal</strong><span>Explore tramas e materiais do catálogo.</span></article>
+                <article><strong>Para diferentes espaços</strong><span>Opções para varanda, área gourmet e jardim.</span></article>
+                <article><strong>Orçamento personalizado</strong><span>Consulte acabamentos, prazo e entrega.</span></article>
             </div>
         </section>
 
@@ -153,9 +156,9 @@
                 <div class="section-head">
                     <div>
                         <span class="eyebrow dark">EXPLORE POR CATEGORIA</span>
-                        <h2>Escolha o estilo do seu ambiente</h2>
+                        <h2>Comece pelo tipo de móvel</h2>
                     </div>
-                    <p>Uma seleção criada a partir do catálogo Famais, organizada para facilitar a navegação.</p>
+                    <p>Encontre conjuntos, balanços, poltronas e outros modelos por categoria.</p>
                 </div>
 
                 <div class="category-cards" id="categoryCards"></div>
@@ -167,7 +170,7 @@
                 <div class="section-head collection-head">
                     <div>
                         <span class="eyebrow dark">CATÁLOGO FAMAIS</span>
-                        <h2>Nossa coleção</h2>
+                        <h2>Catálogo Famais 2026</h2>
                     </div>
 
                     <div class="catalog-tools">
@@ -356,7 +359,7 @@
                 <div class="section-head">
                     <div>
                         <span class="eyebrow dark">INSPIRAÇÃO</span>
-                        <h2>Projetos para aproveitar cada momento</h2>
+                        <h2>Ideias para compor seu espaço</h2>
                     </div>
                 </div>
 
@@ -381,10 +384,10 @@
             <div class="container contact-grid">
                 <div class="contact-copy">
                     <span class="eyebrow">ATENDIMENTO</span>
-                    <h2>Vamos montar o seu ambiente?</h2>
-                    <p>Envie sua cidade, os produtos que gostou e uma estimativa de quantidade. A equipe comercial pode orientar sobre disponibilidade, acabamento e entrega.</p>
+                    <h2>Vamos conversar sobre seu espaço?</h2>
+                    <p>Conte quais modelos chamaram sua atenção, sua cidade e a quantidade desejada. A equipe pode informar opções de acabamento, prazo e entrega.</p>
                     <ol class="quote-steps" aria-label="Como pedir um orçamento">
-                        <li><strong>Escolha um modelo</strong><span>Veja a coleção e anote o nome do produto.</span></li>
+                        <li><strong>Escolha um modelo</strong><span>Veja o catálogo e anote o nome ou a referência.</span></li>
                         <li><strong>Conte o que precisa</strong><span>Informe cidade, quantidade e suas dúvidas.</span></li>
                         <li><strong>Revise a mensagem</strong><span>O WhatsApp abre com o pedido pronto para você enviar.</span></li>
                     </ol>
@@ -404,7 +407,7 @@
                 <form class="contact-form" id="contactForm">
                     <label>Nome<input id="contactName" name="name" autocomplete="name" required></label>
                     <label>Cidade e estado (opcional)<input id="contactCity" name="city" autocomplete="address-level2" placeholder="Ex.: Tapira — PR" maxlength="120"></label>
-                    <label>Produto e quantidade (opcional)<textarea id="contactMessage" name="message" rows="4" placeholder="Ex.: Conjunto Lounge Azul, 1 unidade. Quero saber acabamentos e prazo."></textarea></label>
+                    <label>Produto e quantidade (opcional)<textarea id="contactMessage" name="message" rows="4" placeholder="Ex.: Conjunto Navegantes Ferro, 1 unidade. Quero saber acabamentos e prazo."></textarea></label>
                     <button class="btn btn-dark" type="submit">Continuar no WhatsApp</button>
                     <p class="form-help">A mensagem será preparada no WhatsApp. Você poderá revisar antes de enviar. Não é necessário informar e-mail ou telefone aqui.</p>
                 </form>
@@ -416,7 +419,7 @@
         <div class="container footer-grid">
             <div class="footer-brand">
                 <img src="logo-famais.svg" alt="Famais">
-                <p>Móveis artesanais para ambientes que merecem ser vividos.</p>
+                <p>Explore móveis artesanais para seus espaços de convivência.</p>
             </div>
             <div>
                 <strong>Navegação</strong>
@@ -431,7 +434,7 @@
             </div>
             <div>
                 <strong>Informações</strong>
-                <span>Catálogo demonstrativo</span>
+                <span>Catálogo Famais 2026</span>
                 <span>Preços sob consulta</span>
                 <span>Disponibilidade variável</span>
             </div>
@@ -450,12 +453,12 @@
         inert
     >
         <div class="drawer-head">
-            <div><span class="eyebrow dark">SUA SELEÇÃO</span><h3 id="cartDrawerTitle">Solicitação de orçamento</h3></div>
-            <button id="closeCart" type="button" aria-label="Fechar sacola">×</button>
+            <div><span class="eyebrow dark">SEUS PRODUTOS</span><h3 id="cartDrawerTitle">Carrinho de orçamento</h3></div>
+            <button id="closeCart" type="button" aria-label="Fechar carrinho">×</button>
         </div>
         <div class="cart-items" id="cartItems"></div>
         <div class="drawer-footer">
-            <p>Os itens serão enviados para o WhatsApp como solicitação de orçamento.</p>
+            <p>Revise os modelos no carrinho antes de preparar o pedido no WhatsApp.</p>
             <button class="btn btn-dark" id="quoteButton" type="button">Pedir orçamento</button>
         </div>
     </aside>
@@ -479,7 +482,7 @@
                 <div class="modal-stock" id="modalStock"></div>
                 <div class="modal-price" id="modalPrice">Preço sob consulta</div>
                 <a class="btn btn-dark" id="modalQuote" target="_blank" rel="noopener noreferrer">Pedir orçamento no WhatsApp</a>
-                <button class="btn btn-soft" id="modalAdd" type="button">Adicionar à seleção</button>
+                <button class="btn btn-soft" id="modalAdd" type="button">Adicionar ao carrinho</button>
             </div>
         </div>
     </div>
