@@ -198,6 +198,7 @@ function getVisibleProducts() {
             product.name,
             product.category,
             product.description,
+            product.reference || "",
         ].join(" ").toLowerCase().includes(query);
 
         return categoryOk && searchOk;
@@ -418,7 +419,7 @@ function productQuoteUrl(product) {
     const message = [
         "Olá! Gostaria de um orçamento Famais.",
         `Produto: ${product.name}`,
-        `Referência: ${product.id}`,
+        `Referência: ${product.reference || product.id}`,
         "Pode informar valor, acabamentos, medidas e prazo de entrega?",
         "Minha cidade e a quantidade desejada são: "
     ].join("\n");
@@ -436,7 +437,7 @@ function requestQuote() {
     }
 
     const lines = selected.map((product, index) =>
-        `${index + 1}. ${product.name} (ref. ${product.id}) - ${product.category}`
+        `${index + 1}. ${product.name} (ref. ${product.reference || product.id}) - ${product.category}`
     );
 
     const message = [
