@@ -27,7 +27,7 @@ function saveCart() {
     try {
         localStorage.setItem(CART_KEY, JSON.stringify(cart));
     } catch {
-        showToast("Não foi possível salvar sua seleção neste navegador");
+        showToast("Não foi possível salvar seu carrinho neste navegador");
     }
 }
 
@@ -270,7 +270,7 @@ function renderProducts() {
                                 Detalhes
                             </button>
                             <button class="small-button primary" data-add="${product.id}" type="button">
-                                Selecionar
+                                Adicionar ao carrinho
                             </button>
                         </div>
                     </div>
@@ -347,7 +347,7 @@ function addToCart(id) {
         saveCart();
     }
     renderCart();
-    showToast("Produto adicionado à sua seleção");
+    showToast("Produto adicionado ao carrinho");
 }
 
 function removeFromCart(id) {
@@ -373,10 +373,10 @@ function renderCart() {
             <button
                 data-remove="${product.id}"
                 type="button"
-                aria-label="Remover ${product.name} da seleção"
+                aria-label="Remover ${product.name} do carrinho"
             >×</button>
         </article>
-    `).join("") : "<p>Sua seleção está vazia. Escolha os produtos que deseja consultar.</p>";
+    `).join("") : "<p>Seu carrinho está vazio. Adicione os produtos que deseja consultar.</p>";
 
     $$("[data-remove]").forEach((button) => {
         button.addEventListener("click", () => removeFromCart(Number(button.dataset.remove)));
