@@ -596,7 +596,10 @@ $("#modalQuote").addEventListener("click", () => {
     openRegionQuote(productQuoteMessage(product), `Orçamento: ${product.name}`);
 });
 $("#closeRegionDialog").addEventListener("click", () => $("#regionDialog").close());
-$("#quoteRegion").addEventListener("change", (event) => updateRegionStatus(event.target.value));
+$("#quoteRegion").addEventListener("change", (event) => {
+    $("#contactRegion").value = event.target.value;
+    updateRegionStatus(event.target.value);
+});
 $("#contactRegion").addEventListener("change", (event) => updateRegionStatus(event.target.value));
 $$('[data-region]').forEach((button) => {
     button.addEventListener("click", () => {
