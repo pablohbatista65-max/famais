@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap">
-    <link rel="stylesheet" href="styles.css?v=20260926-2">
+    <link rel="stylesheet" href="styles.css?v=20261001-1">
     <script type="application/ld+json">
 {
     "@context": "https://schema.org",
@@ -392,6 +392,22 @@
                         <li><strong>Revise a mensagem</strong><span>O WhatsApp abre com o pedido pronto para você enviar.</span></li>
                     </ol>
 
+                    <div class="region-card" aria-labelledby="regionTitle">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Brasil_regioes_color_name.svg" alt="Mapa do Brasil dividido em cinco regiões" width="150" height="135" loading="lazy">
+                        <div>
+                            <strong id="regionTitle">Atendimento na sua região</strong>
+                            <p>Escolha sua região ao pedir o orçamento. Vamos direcionar a mensagem ao contato disponível.</p>
+                            <span id="regionStatus" aria-live="polite">Selecione a região no formulário ou no carrinho.</span>
+                            <div class="region-choices" role="group" aria-label="Escolher região de atendimento">
+                                <button type="button" data-region="Norte" aria-pressed="false">Norte</button>
+                                <button type="button" data-region="Nordeste" aria-pressed="false">Nordeste</button>
+                                <button type="button" data-region="Centro-Oeste" aria-pressed="false">Centro-Oeste</button>
+                                <button type="button" data-region="Sudeste" aria-pressed="false">Sudeste</button>
+                                <button type="button" data-region="Sul" aria-pressed="false">Sul</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="contact-list">
                         <a href="https://wa.me/5544991255235" target="_blank" rel="noopener noreferrer">
                             <span>WhatsApp</span>
@@ -407,6 +423,16 @@
                 <form class="contact-form" id="contactForm">
                     <label>Nome<input id="contactName" name="name" autocomplete="name" required></label>
                     <label>Cidade e estado (opcional)<input id="contactCity" name="city" autocomplete="address-level2" placeholder="Ex.: Tapira — PR" maxlength="120"></label>
+                    <label>Região do Brasil
+                        <select id="contactRegion" name="region" required>
+                            <option value="">Selecione sua região</option>
+                            <option value="Norte">Norte</option>
+                            <option value="Nordeste">Nordeste</option>
+                            <option value="Centro-Oeste">Centro-Oeste</option>
+                            <option value="Sudeste">Sudeste</option>
+                            <option value="Sul">Sul</option>
+                        </select>
+                    </label>
                     <label>Produto e quantidade (opcional)<textarea id="contactMessage" name="message" rows="4" placeholder="Ex.: Conjunto Navegantes Ferro, 1 unidade. Quero saber acabamentos e prazo."></textarea></label>
                     <button class="btn btn-dark" type="submit">Continuar no WhatsApp</button>
                     <p class="form-help">A mensagem será preparada no WhatsApp. Você poderá revisar antes de enviar. Não é necessário informar e-mail ou telefone aqui.</p>
@@ -481,11 +507,32 @@
                 <p id="modalDescription"></p>
                 <div class="modal-stock" id="modalStock"></div>
                 <div class="modal-price" id="modalPrice">Preço sob consulta</div>
-                <a class="btn btn-dark" id="modalQuote" target="_blank" rel="noopener noreferrer">Pedir orçamento no WhatsApp</a>
+                <button class="btn btn-dark" id="modalQuote" type="button">Pedir orçamento no WhatsApp</button>
                 <button class="btn btn-soft" id="modalAdd" type="button">Adicionar ao carrinho</button>
             </div>
         </div>
     </div>
+
+    <dialog class="region-dialog" id="regionDialog" aria-labelledby="regionDialogTitle">
+        <form id="regionQuoteForm">
+            <button class="region-dialog-close" id="closeRegionDialog" type="button" aria-label="Fechar escolha de região">×</button>
+            <span class="eyebrow dark">ORÇAMENTO FAMAIS</span>
+            <h2 id="regionDialogTitle">Onde você precisa de atendimento?</h2>
+            <p id="regionQuoteSummary"></p>
+            <label for="quoteRegion">Sua região</label>
+            <select id="quoteRegion" name="region" required>
+                <option value="">Selecione sua região</option>
+                <option value="Norte">Norte</option>
+                <option value="Nordeste">Nordeste</option>
+                <option value="Centro-Oeste">Centro-Oeste</option>
+                <option value="Sudeste">Sudeste</option>
+                <option value="Sul">Sul</option>
+            </select>
+            <p class="region-destination" id="regionDestination" aria-live="polite"></p>
+            <button class="btn btn-dark" type="submit">Continuar no WhatsApp</button>
+            <small>Você poderá revisar a mensagem antes de enviá-la.</small>
+        </form>
+    </dialog>
 
     <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
@@ -504,6 +551,7 @@
 </small>
 
     <script src="catalogo-2026.js"></script>
-    <script src="app.js?v=20260926-2"></script>
+    <script src="representantes.js?v=20261001-1"></script>
+    <script src="app.js?v=20261001-1"></script>
 </body>
 </html>

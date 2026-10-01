@@ -8,6 +8,58 @@ let cart = loadCart();
 let activeCategory = "Todos";
 let selectedProductId = null;
 let lastFocusedElement = null;
+let pendingQuoteMessage = "";
+const REGION_KEY = "famais_regiao_v1";
+const REPRESENTATIVES = window.FAMAIS_REPRESENTANTES;
+
+function representativeFor(region) {
+    const number = REPRESENTATIVES.regioes[region];
+    const assigned = typeof number === "string" && /^55\d{10,11}$/.test(number);
+    return { number: assigned ? number : REPRESENTATIVES.geral, assigned };
+}
+
+function savedRegion() {
+    try {
+        const region = localStorage.getItem(REGION_KEY);
+        return Object.hasOwn(REPRESENTATIVES.regioes, region) ? region : "";
+    } catch {
+        return "";
+    }
+}
+
+function updateRegionStatus(region) {
+    $$('[data-region]').forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.region === region));
+    });
+    if (!region) {
+        $("#regionStatus").textContent = "Selecione a região no formulário ou no carrinho.";
+        $("#regionDestination").textContent = "";
+        return;
+    }
+    const destination = representativeFor(region).assigned
+        ? `representante da região ${region}`
+        : `atendimento geral da Famais para a região ${region}`;
+    $("#regionStatus").textContent = `Destino: ${destination}.`;
+    $("#regionDestination").textContent = `Sua mensagem irá para o ${destination}.`;
+}
+
+function openRegionQuote(message, summary) {
+    pendingQuoteMessage = message;
+    $("#regionQuoteSummary").textContent = summary;
+    $("#quoteRegion").value = $("#contactRegion").value || savedRegion();
+    updateRegionStatus($("#quoteRegion").value);
+    $("#regionDialog").showModal();
+    $("#quoteRegion").focus();
+}
+
+function whatsappQuote(message, region) {
+    const { number } = representativeFor(region);
+    try { localStorage.setItem(REGION_KEY, region); } catch { /* Preferência opcional. */ }
+    $("#contactRegion").value = region;
+    updateRegionStatus(region);
+    const regionalMessage = `${message}\nRegião de atendimento: ${region}`;
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(regionalMessage)}`, "_blank", "noopener,noreferrer");
+}
 
 function loadCart() {
     try {
@@ -261,7 +313,7 @@ function renderProducts() {
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
 
-                    <a class="btn btn-dark product-quote" href="${productQuoteUrl(product)}" target="_blank" rel="noopener noreferrer">Pedir orçamento</a>
+                    <button class="btn btn-dark product-quote" data-quote="${product.id}" type="button">Pedir orçamento</button>
                     <div class="product-bottom">
                         <span class="price">${productPrice(product)}</span>
 
@@ -300,6 +352,12 @@ function renderProducts() {
             addToCart(Number(button.dataset.add));
         });
     });
+    $$('[data-quote]').forEach((button) => {
+        button.addEventListener("click", () => {
+            const product = products.find((item) => item.id === Number(button.dataset.quote));
+            if (product) openRegionQuote(productQuoteMessage(product), `Orçamento: ${product.name}`);
+        });
+    });
     const emptyResetButton = $("[data-reset-catalog]");
 
     if (emptyResetButton) {
@@ -312,7 +370,6 @@ function openProduct(id) {
     if (!product) return;
 
     selectedProductId = id;
-    $("#modalQuote").href = productQuoteUrl(product);
     $("#modalImage").src = product.image;
     $("#modalImage").alt = product.name;
     $("#modalCategory").textContent = product.category;
@@ -415,15 +472,14 @@ function closeCart() {
     }
 }
 
-function productQuoteUrl(product) {
-    const message = [
+function productQuoteMessage(product) {
+    return [
         "Olá! Gostaria de um orçamento Famais.",
         `Produto: ${product.name}`,
         `Referência: ${product.reference || product.id}`,
         "Pode informar valor, acabamentos, medidas e prazo de entrega?",
         "Minha cidade e a quantidade desejada são: "
     ].join("\n");
-    return `https://wa.me/5544991255235?text=${encodeURIComponent(message)}`;
 }
 
 function requestQuote() {
@@ -449,11 +505,8 @@ function requestQuote() {
         "Minha cidade e a quantidade desejada são: "
     ].join("\n");
 
-    window.open(
-        `https://wa.me/5544991255235?text=${encodeURIComponent(message)}`,
-        "_blank",
-        "noopener,noreferrer"
-    );
+    closeCart();
+    openRegionQuote(message, `${selected.length} ${selected.length === 1 ? "produto" : "produtos"} no carrinho`);
 }
 
 function toggleSearch(forceOpen) {
@@ -536,6 +589,28 @@ $("#cartButton").addEventListener("click", openCart);
 $("#closeCart").addEventListener("click", closeCart);
 $("#cartBackdrop").addEventListener("click", closeCart);
 $("#quoteButton").addEventListener("click", requestQuote);
+$("#modalQuote").addEventListener("click", () => {
+    const product = products.find((item) => item.id === selectedProductId);
+    if (!product) return;
+    closeProduct();
+    openRegionQuote(productQuoteMessage(product), `Orçamento: ${product.name}`);
+});
+$("#closeRegionDialog").addEventListener("click", () => $("#regionDialog").close());
+$("#quoteRegion").addEventListener("change", (event) => updateRegionStatus(event.target.value));
+$("#contactRegion").addEventListener("change", (event) => updateRegionStatus(event.target.value));
+$$('[data-region]').forEach((button) => {
+    button.addEventListener("click", () => {
+        $("#contactRegion").value = button.dataset.region;
+        updateRegionStatus(button.dataset.region);
+    });
+});
+$("#regionQuoteForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const region = $("#quoteRegion").value;
+    if (!Object.hasOwn(REPRESENTATIVES.regioes, region)) return;
+    $("#regionDialog").close();
+    whatsappQuote(pendingQuoteMessage, region);
+});
 
 $("#closeProductModal").addEventListener("click", closeProduct);
 $("#productModal").addEventListener("click", (event) => {
@@ -558,11 +633,11 @@ $("#contactForm").addEventListener("submit", (event) => {
         `Mensagem: ${$("#contactMessage").value || "Gostaria de mais informações."}`
     ].join("\n");
 
-    window.open(
-        `https://wa.me/5544991255235?text=${encodeURIComponent(message)}`,
-        "_blank",
-        "noopener,noreferrer"
-    );
+    const region = $("#contactRegion").value;
+    if (!Object.hasOwn(REPRESENTATIVES.regioes, region)) return;
+    whatsappQuote(message, region);
 });
 
+$("#contactRegion").value = savedRegion();
+updateRegionStatus($("#contactRegion").value);
 renderAll();
